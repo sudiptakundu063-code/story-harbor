@@ -91,7 +91,7 @@ function StoryPage() {
                 <img
                     src={story.cover_url}
                     alt={story.name}
-                    className="aspect-2/3 w-56 rounded-xl border border-zinc-800 object-cover shadow-xl"
+                    className="w-56 rounded-xl border border-zinc-800 shadow-xl"
                 />
 
                 <div className="flex-1">

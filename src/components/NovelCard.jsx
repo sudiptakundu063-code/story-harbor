@@ -1,12 +1,12 @@
 export default function NovelCard({ story }) {
     return (
         <article className="group overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5">
-            <div className="aspect-2/3 overflow-hidden bg-zinc-800">
-                {story.cover ? (
+            <div className="aspect-3/4 overflow-hidden bg-zinc-800">
+                {story.cover_url ? (
                     <img
                         src={story.cover_url}
                         alt={story.title}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        className="h-full w-full object-cover transition duration-500"
                     />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center text-xs text-zinc-600">
