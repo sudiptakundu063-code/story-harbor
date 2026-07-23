@@ -95,6 +95,7 @@ function BookReader({
     >
 
       {/* PDF */}
+      {/* PDF */}
       <div
         className="
           absolute
@@ -104,7 +105,6 @@ function BookReader({
           justify-center
         "
       >
-
         <Document
           file={pdfUrl}
           onLoadSuccess={({ numPages }) => {
@@ -112,41 +112,25 @@ function BookReader({
           }}
           loading={null}
         >
-
           <AnimatePresence mode="wait">
-
             <motion.div
               key={currentPage}
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-              transition={{
-                duration: 0.45,
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.45 }}
             >
-
               <Page
-                pageNumber={currentPage}
-                renderTextLayer={false}
-                renderAnnotationLayer={false}
-                className="
-                  max-h-screen
-                  max-w-screen
-                "
-              />
-
+              pageNumber={currentPage}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
+              className="
+                scale-[0.8]
+              "
+            />
             </motion.div>
-
           </AnimatePresence>
-
         </Document>
-
       </div>
 
 
@@ -174,10 +158,9 @@ function BookReader({
           transition-all
           duration-500
 
-          ${
-            controlsVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-5 pointer-events-none"
+          ${controlsVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-5 pointer-events-none"
           }
         `}
       >
@@ -220,10 +203,9 @@ function BookReader({
           transition-all
           duration-500
 
-          ${
-            controlsVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-5 pointer-events-none"
+          ${controlsVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-5 pointer-events-none"
           }
         `}
       >
