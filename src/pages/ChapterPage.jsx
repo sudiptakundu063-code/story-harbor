@@ -6,15 +6,15 @@ import BookReader from "../components/BookReader";
 function ChapterPage() {
   const { storyId, translationId } = useParams();
 
-  const [translation, setTranslation] = useState(null);
-  const [epubUrl, setEpubUrl] = useState("");
+  const [chapter, setChapter] = useState(null);
+  const [contentUrl, setContentUrl] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadChapter() {
       setLoading(true);
 
-      const { data: translationData, error } = await supabase
+      const { data, error } = await supabase
         .from("chapter_translations")
         .select(`
           *,
@@ -40,47 +40,65 @@ function ChapterPage() {
         return;
       }
 
-      setTranslation(translationData);
+      setChapter(data);
 
-      if (!translationData.content_path) {
-        console.error("No EPUB path found.");
+      if (!data.content_path) {
+        console.error("No content path found.");
         setLoading(false);
         return;
       }
 
       const { data: storageData } = supabase.storage
         .from("chapters")
-        .getPublicUrl(translationData.content_path);
+        .getPublicUrl(data.content_path);
 
-      setEpubUrl(storageData.publicUrl);
+      setContentUrl(storageData.publicUrl);
+
       setLoading(false);
     }
 
     loadChapter();
   }, [translationId]);
 
+
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-zinc-950 text-zinc-400">
+      <div className="
+        h-screen
+        flex
+        items-center
+        justify-center
+        bg-zinc-950
+        text-zinc-400
+      ">
         Loading chapter...
       </div>
     );
   }
 
-  if (!translation) {
+
+  if (!chapter) {
     return (
-      <div className="flex h-screen items-center justify-center bg-zinc-950 text-zinc-400">
+      <div className="
+        h-screen
+        flex
+        items-center
+        justify-center
+        bg-zinc-950
+        text-zinc-400
+      ">
         Chapter not found.
       </div>
     );
   }
 
+
   return (
     <BookReader
-      epubUrl={epubUrl}
+      pdfUrl={contentUrl}
       storyId={storyId}
-      chapterName={translation.chapters.name}
-      languageName={translation.languages.native_name}
+      chapterName={chapter.chapters.name}
+      languageName={chapter.languages.native_name}
     />
   );
 }
