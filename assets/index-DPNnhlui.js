@@ -69,9 +69,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           items-center\r
           justify-center\r
         `,children:(0,z.jsx)(KC,{file:e,onLoadSuccess:({numPages:e})=>{a(e)},loading:null,children:(0,z.jsx)(mN,{mode:`wait`,children:(0,z.jsx)(sF.div,{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:.45},children:(0,z.jsx)(Sw,{pageNumber:o,renderTextLayer:!1,renderAnnotationLayer:!1,className:`\r
-                  max-h-screen\r
-                  max-w-screen\r
-                `})},o)})})}),(0,z.jsx)(`div`,{className:`\r
+                scale-[0.8]\r
+              `})},o)})})}),(0,z.jsx)(`div`,{className:`\r
           absolute\r
           inset-0\r
           z-50\r
